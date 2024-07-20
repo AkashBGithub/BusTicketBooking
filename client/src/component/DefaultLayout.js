@@ -56,13 +56,15 @@ function DefaultLayout({ children }) {
   if (window.location.pathname.includes('book-now')) {
     activeRoute = '/';
   }
+
   return (
     <div className="layout-parent">
       <div className="sidebar">
         <div className="sidebar-header">
           <h1 className="logo">YB</h1>
           <h1 className="role">
-            {user?.name} <br /> Role : {user?.isAdmin ? 'Admin' : 'User'}
+            {user?.name?.toUpperCase()} <br /> Role :{' '}
+            {user?.isAdmin ? 'Admin' : 'User'}
           </h1>
         </div>
         <div className="d-flex flex-column gap-3 justify-content-start menu">
