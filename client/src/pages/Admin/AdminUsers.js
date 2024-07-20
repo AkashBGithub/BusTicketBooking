@@ -1,10 +1,10 @@
-import { message, Table } from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import PageTitle from "../../component/PageTitle";
-import { axiosInstance } from "../../helpers/axiosinstance";
-import { hideLoading, showLoading } from "../../redux/alertsSlice";
-import "antd/dist/antd.css";
+import { message, Table } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PageTitle from '../../component/PageTitle';
+import { axiosInstance } from '../../helpers/axiosinstance';
+import { hideLoading, showLoading } from '../../redux/alertsSlice';
+import 'antd/dist/antd.css';
 
 function AdminUsers() {
   const dispatch = useDispatch();
@@ -13,10 +13,9 @@ function AdminUsers() {
   const getUsers = async () => {
     try {
       dispatch(showLoading());
-      const response = await axiosInstance.post("/api/users/get-all-users", {});
+      const response = await axiosInstance.post('/api/users/get-all-users', {});
       dispatch(hideLoading());
       if (response.data.success) {
-        console.log(response.data);
         setUsers(response.data.data);
         message.success(response.data.message);
       } else {
@@ -30,32 +29,31 @@ function AdminUsers() {
   };
 
   const updateUserPermission = async (user, action) => {
-    console.log(user);
-    console.log(action);
     let payload = null;
-    if (action === "make-admin") {
+    if (action === 'make-admin') {
       payload = {
         ...user,
         isAdmin: true,
       };
-    } else if (action === "remove-admin") {
+    } else if (action === 'remove-admin') {
       payload = {
         ...user,
         isAdmin: false,
       };
-    } else if (action === "unblock") {
+    } else if (action === 'unblock') {
       payload = {
         ...user,
         isBlocked: false,
       };
-    } else if (action === "block") {
+    } else if (action === 'block') {
       payload = {
         ...user,
         isBlocked: true,
       };
     }
-    const response = await axiosInstance.post("/api/users/update-user", 
-      payload,
+    const response = await axiosInstance.post(
+      '/api/users/update-user',
+      payload
     );
     try {
       dispatch(showLoading());
@@ -74,41 +72,40 @@ function AdminUsers() {
 
   const column = [
     {
-      title: "Name",
-      dataIndex: "name",
+      title: 'Name',
+      dataIndex: 'name',
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: 'Email',
+      dataIndex: 'email',
     },
     {
-      title: "Status",
-      dataIndex: "",
+      title: 'Status',
+      dataIndex: '',
       render: (data) => {
-        return data?.isBlocked ? "Blocked" : "Active";
+        return data?.isBlocked ? 'Blocked' : 'Active';
       },
     },
     {
-      title: "Role",
-      dataIndex: "",
+      title: 'Role',
+      dataIndex: '',
       render: (data) => {
-        // console.log(data);
         if (data?.isAdmin) {
-          return "Admin";
+          return 'Admin';
         } else {
-          return "User";
+          return 'User';
         }
       },
     },
     {
-      title: "Actions",
-      dataIndex: "action",
+      title: 'Actions',
+      dataIndex: 'action',
       render: (action, record) => (
         <div className="d-flex gap-3">
           {record?.isBlocked && (
             <p
               className="underline"
-              onClick={() => updateUserPermission(record, "unblock")}
+              onClick={() => updateUserPermission(record, 'unblock')}
             >
               UnBlock
             </p>
@@ -116,7 +113,7 @@ function AdminUsers() {
           {!record?.isBlocked && (
             <p
               className="underline"
-              onClick={() => updateUserPermission(record, "block")}
+              onClick={() => updateUserPermission(record, 'block')}
             >
               Block
             </p>
@@ -124,7 +121,7 @@ function AdminUsers() {
           {record?.isAdmin && (
             <p
               className="underline"
-              onClick={() => updateUserPermission(record, "remove-admin")}
+              onClick={() => updateUserPermission(record, 'remove-admin')}
             >
               Remove Admin
             </p>
@@ -132,7 +129,7 @@ function AdminUsers() {
           {!record?.isAdmin && (
             <p
               className="underline"
-              onClick={() => updateUserPermission(record, "make-admin")}
+              onClick={() => updateUserPermission(record, 'make-admin')}
             >
               Make Admin
             </p>

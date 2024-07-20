@@ -15,7 +15,6 @@ function Login() {
       dispatch(hideLoading());
 
       if (response.data.success) {
-        console.log(response.data);
         message.success(response.data.message);
         localStorage.setItem('token', response.data.data);
         window.location.href = '/';

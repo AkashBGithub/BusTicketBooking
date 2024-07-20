@@ -23,7 +23,6 @@ function BookNow() {
       dispatch(hideLoading());
       if (response.data.success) {
         setBus(response.data.data);
-        console.log(bus);
       } else {
         message.error(response.data.message);
       }

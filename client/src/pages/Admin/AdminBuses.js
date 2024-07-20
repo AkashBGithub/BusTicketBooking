@@ -88,7 +88,6 @@ function AdminBuses() {
           <i
             className="ri-pencil-line"
             onClick={() => {
-              console.log(action);
               setSelectedBus(record);
               setShowBusForm(true);
             }}

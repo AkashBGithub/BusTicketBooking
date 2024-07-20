@@ -16,7 +16,6 @@ function Register() {
       dispatch(hideLoading());
 
       if (response.data.success) {
-        console.log(response.data);
         message.success(response.data.message);
         navigate('/login');
       } else {
