@@ -1,3 +1,4 @@
 .auth {
-  background-color: var(--secondary);
+  background-image: url('./images/authImage.avif');
+  background-size: cover;
 }

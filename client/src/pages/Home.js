@@ -78,25 +78,27 @@ function Home() {
               }
             />
           </Col>{' '}
-          <Col lg={6} xs={24}>
-            <div className="d-flex gap-3 pt-2 pt-md-0">
-              <button className="btn btn-primary" onClick={() => getBuses()}>
-                Search
-              </button>
-              <button
-                className="btn btn-outline-success outline"
-                onClick={() =>
-                  setFilter({
-                    from: '',
-                    to: '',
-                    journeyDate: '',
-                  })
-                }
-              >
-                Clear
-              </button>
-            </div>
-          </Col>
+          {(filter.from || filter.to || filter.journeyDate) && (
+            <Col lg={6} xs={24}>
+              <div className="d-flex gap-3 pt-2 pt-md-0">
+                <button className="btn btn-primary" onClick={() => getBuses()}>
+                  Search
+                </button>
+                <button
+                  className="btn btn-outline-success outline"
+                  onClick={() =>
+                    setFilter({
+                      from: '',
+                      to: '',
+                      journeyDate: '',
+                    })
+                  }
+                >
+                  Clear
+                </button>
+              </div>
+            </Col>
+          )}
         </Row>
       </div>
       <div className="mb-2 ">
