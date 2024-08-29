@@ -21,7 +21,7 @@ function Bus({ bus }) {
         </div>
         <div>
           <p className="text-sm">Fare</p>
-          <p className="text-sm">$ {bus.fare} /-</p>
+          <p className="text-sm">₹ {bus.fare} /-</p>
         </div>
       </div>
       <hr />
